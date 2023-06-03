@@ -1,0 +1,140 @@
+html, body {
+    background: hsl(0, 0%, 97%);
+    font-size: 12px;
+    font-family: "Helvetica Neue", Arial, "Microsoft Jhenghei", sans-serif;
+    margin: 0;
+    min-width: 200px;
+    padding: 0;
+    outline: 0;
+    user-select: none;
+    overflow: hidden;
+}
+
+.wrapper {
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 130px;
+    text-align: center;
+}
+
+p {
+    line-height: 1;
+    margin: 0;
+}
+
+hr {
+    display: block;
+    height: 0;
+    border: 0;
+    border-top: 1px solid hsl(0, 0%, 90%);
+    border-bottom: 1px solid hsl(0, 0%, 100%);
+    margin: 10px 0;
+    padding: 0;
+}
+
+a {
+    color: hsl(10, 80%, 38%);
+    font-weight: bold;
+    outline: 0;
+    transition: color .33s;
+    text-decoration: none;
+}
+
+a:hover{
+    color: hsl(10, 80%, 50%);
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+footer {
+    color: #FFFFFF;
+    /*color: hsl(0, 0%, 50%);*/
+    margin-bottom: 10px;
+}
+
+.settings-secondary-lang {
+    transition: all 1s;
+}
+
+@keyframes rotation1 {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+@keyframes rotation2 {
+    0% {
+        transform: rotate(120deg);
+    }
+    100% {
+        transform: rotate(480deg);
+    }
+}
+@keyframes rotation3 {
+    0% {
+        transform: rotate(240deg);
+    }
+    100% {
+        transform: rotate(600deg);
+    }
+}
+.wrapper {
+    width: 100%;
+    /*min-height: 450px;*/
+    background-image: linear-gradient(to bottom right, #33C457, #00C2DD);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.wrapper .container {
+    width: 100px;
+    height: 100px;
+    position: relative;
+}
+.wrapper .container .message {
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #00C2DD;
+    font-size: 20px;
+    background: -webkit-linear-gradient(#33C457, #00C2DD);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.wrapper .container .cercleRotateContainer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.wrapper .container .cercleRotateContainer .cercle {
+    margin: auto;
+    width: 94%;
+    height: 94%;
+    border: 1px solid #FFF;
+    background-color: #FFF;
+    border-radius: 50%;
+}
+
+.cercleRotateContainer:nth-child(2) {
+    animation: rotation1 2s linear infinite;
+}
+
+.cercleRotateContainer:nth-child(3) {
+    animation: rotation2 3s linear infinite;
+}
+
+.cercleRotateContainer:nth-child(4) {
+    animation: rotation3 4s linear infinite;
+}
+
+footer #star{
+    color: gold;
+}
