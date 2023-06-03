@@ -8,4 +8,4 @@ This is a simple Chrome extension for downloading from Rapidgator. Since bandwid
 * １．Unzip the project.
 * ２．Enable developer mode and import the project.
 
-## Contact me: QQ 903374094
+Contact me: QQ 903374094
