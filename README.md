@@ -8,6 +8,7 @@ This is a simple Chrome extension for downloading from Rapidgator. Since bandwid
 * １．Unzip the project.
 * ２．Enable developer mode and import the project.
 
+https://youtu.be/jawd1uSPW18
 
 ## Water circle effect SCSS
 https://codepen.io/Costik/pen/zJWKEw
