@@ -12,4 +12,7 @@ This is a simple Chrome extension for downloading from Rapidgator. Since bandwid
 ## Water circle effect SCSS
 https://codepen.io/Costik/pen/zJWKEw
 
+## SVG Circle Progress
+https://codepen.io/JMChristensen/pen/AGbeEy
+
 Contact me: QQ 903374094
