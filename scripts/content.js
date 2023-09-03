@@ -33,21 +33,54 @@ function closeForm() {
     }
 }
 
-function submitForm() {
-    let reportData = {
-        "domain": document.getElementById("domainInput").value,
-        "rgHref": JSON.stringify({link: window.location.href}),
-        "message": document.getElementById("messageInput").value,
-        "counterfeit": document.getElementById("counterfeitInput").checked
+async function submitForm() {
+    // let reportData = {
+    //     "domain": document.getElementById("domainInput").value,
+    //     "rgHref": JSON.stringify({link: window.location.href}),
+    //     "message": document.getElementById("messageInput").value,
+    //     "counterfeit": document.getElementById("counterfeitInput").checked
+    // };
+    // if(reportData.message === "") alert("Please enter a message.");
+    // else {
+    //     // TODO: 將報告數據發送到伺服器或進行其他處理
+    //     console.log(reportData);
+    //     closeForm();
+    //     alert("Thanks for reporting!");
+    // }
+
+    const domain = await getFromChromeStorage('rg_dl_domain');
+
+    const reportData = {
+        domain: document.getElementById("domainInput").value,
+        rgHref: JSON.stringify({link: window.location.href}),
+        message: document.getElementById("messageInput").value,
+        counterfeit: document.getElementById("counterfeitInput").checked
     };
+
     if(reportData.message === "") alert("Please enter a message.");
     else {
-        // TODO: 將報告數據發送到伺服器或進行其他處理
-        console.log(reportData);
+
+        try {
+            const options = {
+                method: 'POST',
+                // mode: 'cors',
+                // credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(reportData)
+            };
+            const response = await fetchData(domain + "pub/report", options);
+            console.log(response);
+        } catch (error) {
+            console.error("Error:", error);
+        }
+
         closeForm();
         alert("Thanks for reporting!");
     }
 }
+
 
 function downloadFile(url) {
     let a = document.createElement('a');
@@ -68,7 +101,7 @@ function downloadFile(url) {
         removeUnnecessaryElements();
         renderProgressBar(reliability['data']);
         // 有資料，且高概率是假檔
-        if (reliability['data'] === -1 || reliability['data'] > 50)
+        if (reliability['data'] === '-1' || reliability['data'] > 50)
             await setupDownloadButton(true);
         else
             await setupDownloadButton(false);
@@ -136,11 +169,15 @@ function renderProgressBar(reliability) {
     svg_container.appendChild(svg);
     container.appendChild(svg_container);
 
-    if (reliability < 0) reliability = 0;
-    if (reliability > 100) reliability = 100;
+    // 確保reliability的值在0到100之間
+    reliability = Math.min(100, Math.max(0, reliability));
 
     const offset = (100 - reliability) / 100 * c;
+
     document.getElementById('bar').style.strokeDashoffset = offset;
+
+    // 更新reliability值
+    reliability = reliability === 0 ? '?' : reliability + '%';
     svg_container.setAttribute('data-pct', reliability);
 
     // 創建一個 text 元素

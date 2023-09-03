@@ -1,4 +1,4 @@
-chrome.storage.local.set({ rg_dl_domain: "http://localhost:9801/" });
+chrome.storage.local.set({ rg_dl_domain: "http://localhost:9801/v101/" });
 
 
 async function getFromChromeStorage(key) {

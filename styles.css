@@ -166,7 +166,7 @@ footer #star{
     top: 50%;
     text-align: center;
     box-shadow: none;
-    content: attr(data-pct)"%";
+    content: attr(data-pct);
     margin-top: -80px;
     margin-left: -80px;
     border-radius: 100%;
@@ -203,11 +203,3 @@ footer #star{
 #modal-content {
     transition: transform 0.3s ease-in-out;
 }
-
-/*#form-title {*/
-/*    justify-content: center;*/
-/*}*/
-
-/*#form-item {*/
-/*    justify-content: space-between;*/
-/*}*/
