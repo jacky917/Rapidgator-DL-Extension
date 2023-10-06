@@ -1,3 +1,8 @@
+function errorHandler(error) {
+    console.error("Error:", error.message);
+    alert('Rapidgator-DL-Extension is currently not providing service.');
+}
+
 function btnStyle(btn) {
     btn.style.border = 'none';
     btn.style.borderRadius = '3px';
@@ -73,7 +78,7 @@ async function submitForm() {
             const response = await fetchData(domain + "pub/report", options);
             console.log(response);
         } catch (error) {
-            console.error("Error:", error);
+            errorHandler(error);
         }
 
         closeForm();
@@ -107,7 +112,7 @@ function downloadFile(url) {
             await setupDownloadButton(false);
         renderReportButton();
     } catch (error) {
-        console.error("Error:", error.message);
+        errorHandler(error);
     }
 })();
 
@@ -115,8 +120,8 @@ async function checkReliability() {
     const domain = await getFromChromeStorage('rg_dl_domain');
     const options = {
         method: 'POST',
-        mode: 'cors',
-        credentials: 'include',
+        // mode: 'cors',
+        // credentials: 'include',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -169,15 +174,15 @@ function renderProgressBar(reliability) {
     svg_container.appendChild(svg);
     container.appendChild(svg_container);
 
-    // 確保reliability的值在0到100之間
-    reliability = Math.min(100, Math.max(0, reliability));
+    // 確保reliability的值在-1到100之間
+    reliability = Math.min(100, Math.max(-1, reliability));
 
-    const offset = (100 - reliability) / 100 * c;
-
-    document.getElementById('bar').style.strokeDashoffset = offset;
+    document.getElementById('bar').style.strokeDashoffset =
+        (reliability === -1) ? (100 - 100) / 100 * c : (100 - reliability) / 100 * c;
 
     // 更新reliability值
-    reliability = reliability === 0 ? '?' : reliability + '%';
+    reliability = reliability === -1 ? '?' : reliability + '%';
+
     svg_container.setAttribute('data-pct', reliability);
 
     // 創建一個 text 元素
@@ -238,9 +243,13 @@ async function setupDownloadButton(available) {
 
             try {
                 const data = await fetchData(url, options);
-                downloadFile(data['data']);
+                if(data['code'] === 50000) {
+                    alert(data['message']);
+                }else {
+                    downloadFile(data['data']);
+                }
             } catch (error) {
-                console.error('Fetch error:', error);
+                errorHandler(error);
             }
         };
     } else {

@@ -1,4 +1,5 @@
-chrome.storage.local.set({ rg_dl_domain: "http://localhost:9801/v101/" });
+// chrome.storage.local.set({ rg_dl_domain: "http://localhost:9801/v101/" });
+chrome.storage.local.set({ rg_dl_domain: "https://jp.rapidgator.vip:5555/v101/" });
 
 
 async function getFromChromeStorage(key) {
@@ -15,10 +16,14 @@ async function getFromChromeStorage(key) {
 
 async function fetchData(url, options = {}) {
     const response = await fetch(url, options);
-
-    if (!response.ok) {
-        throw new Error('Network response was not ok');
+    console.log(response);
+    console.log(response.status);
+    if (response.status === 502) {
+        alert('Network response was not ok');
     }
+    // }else if (!response.ok) {
+    //     throw new Error('Network response was not ok');
+    // }
     return response.json();
 }
 
