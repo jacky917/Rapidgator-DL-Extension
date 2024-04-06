@@ -17,4 +17,8 @@ https://codepen.io/Costik/pen/zJWKEw
 ## SVG Circle Progress
 https://codepen.io/JMChristensen/pen/AGbeEy
 
-Contact me: QQ 903374094
+Currently, the service is only available for group members to test.
+
+Contact me:
+QQ 903374094
+Line https://line.me/ti/g/3KWztLMBRB
